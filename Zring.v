@@ -121,14 +121,6 @@ intros H'3; try assumption.
 apply H'0.
 rewrite H'3.
 auto with algebra.
-(* Useless when eq=eqT
-Cut <Z> (ring_mult y x)==ZERO.
-Intros H'3; Try Assumption.
-Unfold ring_mult in H'3.
-Simpl in H'3.
-Rewrite H'3.
-Auto with algebra.
-*)
 rewrite <- H'2.
 change (Equal (ring_mult y x) (ring_mult x y)) in |- *.
 auto with algebra.

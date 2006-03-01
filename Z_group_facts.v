@@ -181,15 +181,6 @@ apply
  Trans
   with (sgroup_law G (Z_to_group_fun g n) (Z_to_group_fun g (ring_unit Zr)));
  auto with algebra.
-(* Useless with Z_gt_le_dec being transparent...
-Apply SGROUP_comp; Auto with algebra.
-Unfold ring_unit; Simpl.
-Apply Trans with (Z_to_group_nat_fun g (POS xH)); Auto with algebra.
-Apply Trans with (nat_to_group g (convert (pos_abs (ax3 xH)))).
-Apply Zl2.
-Simpl.
-Auto with algebra.
-*)
 Qed.
 Hint Resolve group_power_S: algebra.
 
@@ -207,10 +198,6 @@ intros g; try assumption.
 apply
  Trans with (group_power G g (sgroup_law ZZ (monoid_unit ZZ) (ring_unit ZZ)));
  auto with algebra.
-(* Useless with Z_gt_le_dec being transparent...
-Apply Trans with (sgroup_law G (group_power G g (monoid_unit ZZ)) g); Auto with algebra.
-Apply Trans with (sgroup_law G (monoid_unit G) g); Auto with algebra.
-*)
 Qed.
 Hint Resolve group_power_1: algebra.
 
@@ -256,11 +243,6 @@ rewrite
   nat_of_P_mult_morphism x y).
 apply Trans with (nat_to_group (nat_to_group g (nat_of_P p)) (nat_of_P q));
  auto with algebra.
-(* Useless with Z_gt_le_dec being transparent...
-Apply nat_to_group_comp.
-Apply Sym.
-Apply Trans with (nat_to_group g (convert (pos_abs (ax3 p)))); Auto with algebra.
-*)
 Qed.
 Hint Resolve Z_group_nat_fun_mult_pos: algebra.
 
@@ -283,9 +265,6 @@ intros p; try assumption.
 rewrite Zmult_0_l.
 apply Trans with (Z_to_group_nat_fun (monoid_unit G) (Zpos p));
  auto with algebra.
-(* Useless with Z_gt_le_dec being transparent...
-Apply Trans with (monoid_unit G); Auto with algebra.
-*)
 auto with algebra.
 intros p p0; try assumption.
 replace (Zneg p * Zpos p0)%Z with (- (Zpos p * Zpos p0))%Z.
@@ -304,9 +283,6 @@ intros p; try assumption.
 rewrite Zmult_0_l.
 apply Trans with (Z_to_group_nat_fun (monoid_unit G) (Zneg p));
  auto with algebra.
-(* Useless with Z_gt_le_dec being transparent...
-Apply Trans with (monoid_unit G); Auto with algebra.
-*)
 intros p p0; try assumption.
 replace (Zpos p * Zneg p0)%Z with (- (Zpos p * Zpos p0))%Z.
 apply
@@ -324,29 +300,9 @@ apply
        (Zpos p0)); auto with algebra.
 apply Z_to_group_nat_fun_comp; auto with algebra.
 apply Trans with (Z_to_group_nat_fun g (Zneg p)); auto with algebra.
-(* Useless with Z_gt_le_dec being transparent...
-Apply Trans with (group_inverse G (group_power G g (POS p))); Auto with algebra.
-Apply Trans with (group_power G g (NEG p)); Auto with algebra.
-Apply Sym.
-Apply GROUP_law_inverse.
-Apply Trans with (group_power G g (Zplus (POS p) (NEG p))); Auto with algebra.
-*)
 replace (Zpos p) with (- Zneg p)%Z.
-(* Useless with Z_gt_le_dec being transparent...
-Rewrite Zplus_inverse_l.
-*)
 auto with algebra.
 auto with algebra.
-(* Useless with Z_gt_le_dec being transparent...
-Replace (NEG p0) with (Zopp (POS p0)).
-Replace (Zmult (POS p) (Zopp (POS p0))) with (Zmult (Zopp (POS p0)) (POS p)).
-Rewrite Zopp_Zmult.
-Rewrite Zmult_sym.
-Auto with algebra.
-Rewrite Zmult_sym.
-Auto with algebra.
-Auto with algebra.
-*)
 intros p p0; try assumption.
 replace (Zneg p * Zneg p0)%Z with (- (Zpos p * Zneg p0))%Z.
 replace (Zpos p * Zneg p0)%Z with (- (Zpos p * Zpos p0))%Z.

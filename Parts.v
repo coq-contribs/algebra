@@ -239,7 +239,7 @@ Qed.
 Lemma eq_part_included : forall A B : part_set E, Equal A B -> included A B.
 simpl in |- *; unfold eq_part, included in |- *.
 intros A B H' x H'0; try assumption.
-specialize  1H' with (x := x); intros H'1; try exact H'1.
+specialize  1H' with (x := x); rename H' into H'1; try exact H'1.
 elim H'1; intros H'2 H'3; try exact H'2; clear H'1; auto with algebra.
 Qed.
 Hint Resolve eq_part_included: algebra.

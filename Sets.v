@@ -78,18 +78,18 @@ Comments "We will write" (Equal x y)
 
 Lemma Refl : forall (E : Setoid) (x : E), Equal x x.
 intros E; try assumption.
-cut (reflexive (Equal (Setoid:=E))); auto with algebra.
+cut (reflexive (Equal (s:=E))); auto with algebra.
 Qed.
 
 Lemma Sym : forall (E : Setoid) (x y : E), Equal x y -> Equal y x.
 intros E; try assumption.
-cut (symmetric (Equal (Setoid:=E))); auto with algebra.
+cut (symmetric (Equal (s:=E))); auto with algebra.
 Qed.
 
 Lemma Trans :
  forall (E : Setoid) (x y z : E), Equal x y -> Equal y z -> Equal x z.
 intros E; try assumption.
-cut (transitive (Equal (Setoid:=E))); auto with algebra.
+cut (transitive (Equal (s:=E))); auto with algebra.
 Qed.
 Hint Resolve Refl: algebra.
 Hint Immediate Sym: algebra.
@@ -141,7 +141,7 @@ Lemma Rel_comp :
  forall (R : Relation) (x x' y y' : E),
  Equal x x' -> Equal y y' -> app_rel R x y -> app_rel R x' y'.
 intros R; try assumption.
-exact (Rel_compatible_prf (Relation:=R)).
+exact (Rel_compatible_prf (r:=R)).
 Qed.
 Hint Resolve Rel_comp: algebra.
 Variable R : Relation.

@@ -90,7 +90,6 @@ intros A x; try assumption.
 split; [ try assumption | idtac ].
 apply NNPP.
 tauto.
-tauto.
 Qed.
 Hint Resolve compl_compl: algebra.
 

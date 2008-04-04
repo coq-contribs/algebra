@@ -24,8 +24,8 @@
 #########################
 
 OCAMLLIBS:=
-COQLIBS:= -R . algebra
-COQDOCLIBS:=-R . algebra
+COQLIBS:= -R . Algebra
+COQDOCLIBS:=-R . Algebra
 
 ##########################
 #                        #
@@ -146,79 +146,7 @@ GFILES:=$(VFILES:.v=.g)
 HTMLFILES:=$(VFILES:.v=.html)
 GHTMLFILES:=$(VFILES:.v=.g.html)
 
-all: Abelian_group_cat.vo\
-  Abelian_group_facts.vo\
-  Algebra_facts.vo\
-  Algebra.vo\
-  Cantor_Bernstein.vo\
-  Cartesian.vo\
-  Categories2.vo\
-  Categories.vo\
-  Cfield_cat.vo\
-  Cfield_facts.vo\
-  Complex_field.vo\
-  Diff.vo\
-  Endo_set.vo\
-  Field_cat.vo\
-  Field_facts.vo\
-  Fmap.vo\
-  Fpart2.vo\
-  Fpart.vo\
-  Fraction_field.vo\
-  Free_abelian_group.vo\
-  Free_abelian_monoid.vo\
-  Free_group.vo\
-  Free_module.vo\
-  Free_monoid.vo\
-  Generated_group.vo\
-  Generated_module.vo\
-  Generated_monoid.vo\
-  Group_cat.vo\
-  Group_facts.vo\
-  Group_hom_factor.vo\
-  Group_kernel.vo\
-  Group_of_group_hom.vo\
-  Group_power.vo\
-  Group_quotient.vo\
-  Group_util.vo\
-  Hom_module.vo\
-  Ideal.vo\
-  Integral_domain_cat.vo\
-  Integral_domain_facts.vo\
-  Inter.vo\
-  Module_cat.vo\
-  Module_facts.vo\
-  Module_kernel.vo\
-  Module_util.vo\
-  Monoid_cat.vo\
-  Monoid_facts.vo\
-  Monoid_kernel.vo\
-  Monoid_util.vo\
-  Operation_of_monoid.vo\
-  Parts2.vo\
-  Parts3.vo\
-  Parts.vo\
-  Qfield.vo\
-  Ring_cat.vo\
-  Ring_facts.vo\
-  Ring_util.vo\
-  Set_cat.vo\
-  Sets.vo\
-  Sgroup_cat.vo\
-  Sgroup_facts.vo\
-  Singleton.vo\
-  Subcat.vo\
-  Sub_group.vo\
-  Sub_module.vo\
-  Sub_monoid.vo\
-  Sub_sgroup.vo\
-  Tiroirs.vo\
-  Union.vo\
-  Z_group_facts.vo\
-  Z_group.vo\
-  Zring.vo\
-  ZUP.vo
-
+all: $(VOFILES) 
 spec: $(VIFILES)
 
 gallina: $(GFILES)
@@ -247,8 +175,6 @@ all-gal.ps: $(VFILES)
 
 .PHONY: all opt byte archclean clean install depend html
 
-.SUFFIXES: .v .vo .vi .g .html .tex .g.tex .g.html
-
 %.vo %.glob: %.v
 	$(COQC) -dump-glob $*.glob $(COQDEBUG) $(COQFLAGS) $*
 
@@ -270,13 +196,8 @@ all-gal.ps: $(VFILES)
 %.g.html: %.v %.glob
 	$(COQDOC) -glob-from $*.glob -html -g $< -o $@
 
-%.v.d.raw: %.v
-	$(COQDEP) -slash $(COQLIBS) "$<" > "$@"\
-	  || ( RV=$$?; rm -f "$@"; exit $${RV} )
-
-%.v.d: %.v.d.raw
-	$(HIDE)sed 's/\(.*\)\.vo[[:space:]]*:/\1.vo \1.glob:/' < "$<" > "$@" \
-	  || ( RV=$$?; rm -f "$@"; exit $${RV} )
+%.v.d: %.v
+	$(COQDEP) -glob -slash $(COQLIBS) "$<" > "$@" || ( RV=$$?; rm -f "$@"; exit $${RV} )
 
 byte:
 	$(MAKE) all "OPT:=-byte"

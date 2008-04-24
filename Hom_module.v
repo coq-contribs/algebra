@@ -181,30 +181,5 @@ apply
  try
   abstract (simpl in |- *; unfold Map_eq in |- *; simpl in |- *;
              auto with algebra).
-simpl in |- *; unfold Map_eq in |- *; simpl in |- *.
-intros a b x y H' H'0 x0; try assumption.
-exact (MODULE_comp H' (H'0 x0)).
-simpl in |- *; unfold Map_eq in |- *; simpl in |- *.
-intros a b x x0; try assumption.
-exact
- (MODULE_dist_r a b
-    (Ap (sgroup_map (monoid_sgroup_hom (module_monoid_hom x))) x0)).
-simpl in |- *; unfold Map_eq in |- *; simpl in |- *.
-intros a x y x0; try assumption.
-exact
- (MODULE_dist_l a
-    (Ap (sgroup_map (monoid_sgroup_hom (module_monoid_hom x))) x0)
-    (Ap (sgroup_map (monoid_sgroup_hom (module_monoid_hom y))) x0)).
-simpl in |- *; unfold Map_eq in |- *; simpl in |- *.
-intros a b x x0; try assumption.
-apply Sym.
-exact
- (MODULE_assoc a b
-    (Ap (sgroup_map (monoid_sgroup_hom (module_monoid_hom x))) x0)).
-simpl in |- *; unfold Map_eq in |- *; simpl in |- *.
-intros x x0; try assumption.
-exact
- (MODULE_unit_l
-    (Ap (sgroup_map (monoid_sgroup_hom (module_monoid_hom x))) x0)).
 Defined.
 End Hom_module_def.

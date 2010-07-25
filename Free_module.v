@@ -14,6 +14,7 @@
 (* 02110-1301 USA                                                     *)
 
 
+Set Automatic Coercions Import.
 Set Implicit Arguments.
 Unset Strict Implicit.
 Require Export Module_util.

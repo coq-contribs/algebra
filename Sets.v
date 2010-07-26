@@ -14,6 +14,7 @@
 (* 02110-1301 USA                                                     *)
 
 
+Global Set Automatic Coercions Import.
 Set Implicit Arguments.
 Unset Strict Implicit.
 (** Title "Sets, relations, maps" *)

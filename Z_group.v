@@ -88,7 +88,7 @@ Comments "The powers of" r ".".
 
 Definition Z_to_group_nat_fun : ZZ -> G.
 intros x.
-case (Z_gt_le_dec x 0); intros.
+case (Z_gt_le_dec x 0); intros z.
 exact (nat_to_group (nat_of_P (pos_abs z))).
 case (Z_le_lt_eq_dec _ _ z); intros.
 cut (- x > 0)%Z.
@@ -177,7 +177,7 @@ Lemma Zl2 :
    (nat_to_group (nat_of_P (pos_abs (ax3 p)))).
 intros p; try assumption.
 unfold Z_to_group_nat_fun in |- *.
-case (Z_gt_le_dec (Zpos p) 0); intros.
+case (Z_gt_le_dec (Zpos p) 0); intros z.
 simpl in |- *; auto with *.
 case (Z_le_lt_eq_dec (Zpos p) 0 z); intros.
 absurd (Zpos p < 0)%Z; auto with *.
@@ -200,7 +200,7 @@ Lemma Zl3 :
    (group_inverse G (nat_to_group (nat_of_P (pos_abs (ax3 p))))).
 intros p; try assumption.
 unfold Z_to_group_nat_fun in |- *.
-case (Z_gt_le_dec (Zneg p) 0); intros.
+case (Z_gt_le_dec (Zneg p) 0); intros z.
 absurd (Zneg p > 0)%Z; auto with *.
 case (Z_le_lt_eq_dec (Zneg p) 0 z); intros.
 simpl in |- *; auto with *.
@@ -214,6 +214,7 @@ Lemma ax5 :
 intros p q H'; red in H'.
 simpl in H'.
 simpl in |- *.
+rewrite Z.pos_sub_spec.
 rewrite H'.
 auto with *.
 Qed.
@@ -224,6 +225,7 @@ Lemma ax6 :
 intros p q H'; red in H'.
 simpl in H'.
 simpl in |- *.
+rewrite Z.pos_sub_spec.
 rewrite H'.
 auto with *.
 Qed.
@@ -231,7 +233,8 @@ Qed.
 Lemma ax7 : forall p : positive, (Zpos p + Zneg p)%Z = 0%Z.
 intros p; try assumption.
 simpl in |- *.
-replace ((p ?= p)%positive Datatypes.Eq) with Datatypes.Eq.
+rewrite Z.pos_sub_spec; unfold Pos.compare.
+replace (Pcompare p p Datatypes.Eq) with Datatypes.Eq.
 auto with *.
 elim p.
 intros p0; simpl in |- *.
@@ -303,8 +306,8 @@ Hint Resolve nat_to_group_minus: algebra.
 
 Lemma ax8 :
  forall p q : positive,
- (p ?= q)%positive Datatypes.Eq = Datatypes.Lt ->
- (q ?= p)%positive Datatypes.Eq = Datatypes.Gt.
+ Pcompare p q Datatypes.Eq = Datatypes.Lt ->
+ Pcompare q p Datatypes.Eq = Datatypes.Gt.
 intros p q H'; try assumption.
 apply nat_of_P_gt_Gt_compare_complement_morphism.
 red in |- *.
@@ -318,7 +321,7 @@ Lemma Zl4 :
    (sgroup_law G (nat_to_group (nat_of_P p))
       (group_inverse G (nat_to_group (nat_of_P p0)))).
 intros p p0; try assumption.
-case (Z_gt_le_dec (Zpos p) (Zpos p0)); intros.
+case (Z_gt_le_dec (Zpos p) (Zpos p0)); intros z.
 rewrite ax5; auto with *.
 apply Trans with (nat_to_group (nat_of_P (pos_abs (ax3 (p - p0)))));
  auto with *.
@@ -583,7 +586,7 @@ Variable r : G.
 
 Definition Z_to_group_fun : ZZ -> G.
 intros x.
-case (Z_gt_le_dec x 0); intros.
+case (Z_gt_le_dec x 0); intros z.
 exact (pos_to_group r (pos_abs z)).
 case (Z_le_lt_eq_dec _ _ z); intros.
 cut (- x > 0)%Z.
@@ -618,9 +621,9 @@ Lemma Z_to_group_fun_eq :
 intros z; simpl in |- *.
 unfold Z_to_group_fun in |- *.
 unfold Z_to_group_nat_fun in |- *.
-case (Z_gt_le_dec z 0); intros.
+case (Z_gt_le_dec z 0); intros z0.
 auto with *.
-case (Z_le_lt_eq_dec z 0 z0); intros.
+case (Z_le_lt_eq_dec z 0 z0); intros z1.
 apply
  Trans
   with (nat_to_group (group_inverse G r) (nat_of_P (pos_abs (Zlemma1 z1))));

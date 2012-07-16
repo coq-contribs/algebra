@@ -15,6 +15,7 @@
 
 
 Global Set Automatic Coercions Import.
+Global Set Asymmetric Patterns.
 Set Implicit Arguments.
 Unset Strict Implicit.
 (** Title "Sets, relations, maps" *)

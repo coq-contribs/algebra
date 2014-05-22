@@ -53,7 +53,7 @@ red in |- *.
 intros H'0; try assumption.
 apply H'.
 intros x y H'1; try assumption.
-specialize  2H'0 with (n := x) (y := y); rename H'0 into H'3; try exact H'3.
+specialize  H'0 with (n := x) (y := y); rename H'0 into H'3; try exact H'3.
 apply NNPP; tauto.
 Qed.
 

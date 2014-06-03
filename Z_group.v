@@ -17,6 +17,7 @@
 Set Automatic Coercions Import.
 Set Implicit Arguments.
 Unset Strict Implicit.
+Unset Standard Proposition Elimination Names.
 Require Export Zring.
 Require Export Group_kernel.
 (** Title "Universal property of integers." *)

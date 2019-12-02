@@ -21,14 +21,14 @@ Require Export ZArith.
 Require Export auxiliary.
 Require Export ZArith_dec.
 Require Export Zmisc.
-Hint Resolve Zle_refl: algebra.
+Hint Resolve Z.le_refl: algebra.
 Require Export Ring_util.
 Require Export Integral_domain_facts.
 
 Definition Zr_aux : RING.
 apply
  (BUILD_RING (E:=Leibnitz_set BinInt.Z) (ringplus:=Zplus) (ringmult:=Zmult)
-    (zero:=0%Z) (un:=1%Z) (ringopp:=Zopp)).
+    (zero:=0%Z) (un:=1%Z) (ringopp:=Z.opp)).
 simpl in |- *.
 intros x x' y y' H' H'0; try assumption.
 rewrite H'0.
@@ -105,7 +105,7 @@ Definition Zzero_dec :
   forall x : Zr, {Equal x (monoid_unit Zr)} + {~ Equal x (monoid_unit Zr)}.
 simpl in |- *.
 intros x; try assumption.
-case (Z_eq_dec x 0).
+case (Z.eq_dec x 0).
 intros H'; try assumption.
 cut (x = 0%Z :>BinInt.Z).
 auto with algebra.

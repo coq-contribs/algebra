@@ -68,7 +68,7 @@ Qed.
 
 Lemma Zlt_reg_l : forall a b c : Z, (a < b)%Z -> (c + a < c + b)%Z.
 intros a b c; try assumption.
-unfold Zlt, not in |- *.
+unfold Z.lt, not in |- *.
 intros H'; try assumption.
 rewrite <- H'.
 apply Zcompare_plus_compat; assumption.
@@ -76,7 +76,7 @@ Qed.
 
 Lemma Zlemma1 : forall x : Z, (x < 0)%Z -> (- x > 0)%Z.
 intros x H'; try assumption.
-apply Zlt_gt.
+apply Z.lt_gt.
 replace (- x)%Z with (- x + 0)%Z.
 pattern 0%Z at 1 in |- *.
 replace 0%Z with (- x + x)%Z.

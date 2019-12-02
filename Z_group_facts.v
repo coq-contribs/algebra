@@ -38,11 +38,11 @@ intros H'; try assumption.
 inversion H'.
 intros p H'; try assumption.
 replace 0%Z with (- (0))%Z.
-apply Zlt_gt; auto with algebra.
+apply Z.lt_gt; auto with algebra.
 auto with algebra.
 intros p H'; try assumption.
 replace 0%Z with (- (0))%Z.
-apply Zlt_gt; auto with algebra.
+apply Z.lt_gt; auto with algebra.
 auto with algebra.
 Qed.
 Hint Resolve Zopp1: algebra.
@@ -53,11 +53,11 @@ intros H'; try assumption.
 inversion H'.
 intros p H'; try assumption.
 replace 0%Z with (- (0))%Z.
-apply Zgt_lt; auto with algebra.
+apply Z.gt_lt; auto with algebra.
 auto with algebra.
 intros p H'; try assumption.
 replace 0%Z with (- (0))%Z.
-apply Zgt_lt; auto with algebra.
+apply Z.gt_lt; auto with algebra.
 auto with algebra.
 Qed.
 Hint Resolve Zopp2: algebra.
@@ -343,7 +343,7 @@ replace (Zneg p) with (- Zpos p)%Z.
 rewrite Zplus_opp_l.
 auto with algebra.
 auto with algebra.
-rewrite Zopp_involutive; auto with algebra.
+rewrite Z.opp_involutive; auto with algebra.
 replace (Zneg p0) with (- Zpos p0)%Z.
 replace (Zpos p * - Zpos p0)%Z with (- Zpos p0 * Zpos p)%Z.
 rewrite Zopp_mult_distr_l_reverse.

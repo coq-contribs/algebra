@@ -17,7 +17,9 @@
 Set Automatic Coercions Import.
 Set Implicit Arguments.
 Unset Strict Implicit.
-Require Export Z_group.
+Require Z_group.
+Export Sets Categories Parts Sgroup_cat Sub_sgroup Monoid_cat Sub_monoid Group_cat Sub_group Abelian_group_cat Ring_cat.
+Export Integral_domain_cat Zring Z_group.
 (** Title "Facts about powers." *)
 Section Lemmas.
 Variable G : GROUP.

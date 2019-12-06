@@ -17,7 +17,9 @@
 Set Automatic Coercions Import.
 Set Implicit Arguments.
 Unset Strict Implicit.
-Require Export Zring.
+Require Zring.
+Export Sets Categories Parts Sgroup_cat Sub_sgroup Monoid_cat Sub_monoid Group_cat Sub_group Abelian_group_cat Ring_cat.
+Export Integral_domain_cat Zring.
 Require Export Fraction_field.
 (* Check fraction_cfield. *)
 

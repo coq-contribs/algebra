@@ -17,7 +17,9 @@
 Set Automatic Coercions Import.
 Set Implicit Arguments.
 Unset Strict Implicit.
-Require Export Module_cat.
+Require Module_cat.
+Export Sets Categories Parts Sgroup_cat Monoid_cat Group_cat Abelian_group_cat Ring_cat.
+Export Module_cat.
 Require Export Monoid_util.
 Require Export Group_util.
 (** Title "Tools for building modules." *)

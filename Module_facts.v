@@ -17,6 +17,7 @@
 Set Automatic Coercions Import.
 Set Implicit Arguments.
 Unset Strict Implicit.
+Require Export Sets Categories Parts Sgroup_cat Monoid_cat Group_cat Abelian_group_cat Ring_cat.
 Require Export Module_cat.
 Require Export Abelian_group_facts.
 Section Lemmas.

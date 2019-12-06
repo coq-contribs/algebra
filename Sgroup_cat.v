@@ -17,6 +17,7 @@
 Set Implicit Arguments.
 Unset Strict Implicit.
 Require Export Subcat.
+Require Export Categories Parts.
 Require Export Set_cat.
 (** Title "The category of semi-groups." *)
 

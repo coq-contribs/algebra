@@ -17,7 +17,9 @@
 Set Automatic Coercions Import.
 Set Implicit Arguments.
 Unset Strict Implicit.
-Require Export Integral_domain_facts.
+Require Integral_domain_facts.
+Export Sets Categories Parts Sgroup_cat Monoid_cat Group_cat Abelian_group_cat Ring_cat.
+Export Integral_domain_facts.
 Require Export Cfield_cat.
 Require Export Abelian_group_facts.
 Require Export Ring_util.
